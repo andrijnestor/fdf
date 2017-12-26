@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2017/12/26 14:59:21 by anestor          ###   ########.fr       */
+/*   Updated: 2017/12/26 19:32:42 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 # define ABS(x) (x < 0) ? x * -1 : x
 # define DRAW_UNTIL(x, s, e) (s < e) ? x <= e : e <= x
 # define ITERATE(x, y, s, e) (s < e) ? x + y : x - y
-# define Y(x) fdf->dot[x].y
-# define X(y) fdf->dot[y].x
+# define Y(i) fdf->dot[i].y
+# define X(i) fdf->dot[i].x
+# define Z(i) fdf->dot[i].z
 # define RAD(x) (x * M_PI / 180.0)
 # define DEG(x) (x * 180.0 / M_PI)
 # define GREATER(x, y) (x > y) ? x : y
@@ -36,6 +37,7 @@ typedef struct		s_dot
 {
 	int				x;
 	int				y;
+	int				z;
 //	struct s_dot	*next;
 }					t_dot;
 

@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:22:11 by anestor           #+#    #+#             */
-/*   Updated: 2017/12/26 16:35:05 by anestor          ###   ########.fr       */
+/*   Updated: 2017/12/26 19:32:44 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 #include <time.h>
 
 void	make_grid(t_fdf *fdf);
-void	rotate(t_fdf *fdf);
+void	rotate_z(t_fdf *fdf);
+void	rotate_y(t_fdf *fdf);
+void	rotate_x(t_fdf *fdf);
 void	draw_grid(t_fdf *fdf);
+void	heigth_set(t_fdf *fdf);
 
 int		key_hook_test(int keycode, t_fdf *fdf)
 {
 	if (keycode == 123)
 	{
+		//while (keycode == 123)
 		fdf->angle = fdf->angle - 5;
 		mlx_clear_window(fdf->mlx, fdf->win);
 		make_grid(fdf);
-		rotate(fdf);
+	//	heigth_set(fdf);
+	//	rotate_y(fdf);
+		rotate_z(fdf);
+		heigth_set(fdf);
 		draw_grid(fdf);
 	}
 	if (keycode == 124)
@@ -32,23 +39,32 @@ int		key_hook_test(int keycode, t_fdf *fdf)
 		fdf->angle = fdf->angle + 5;
 		mlx_clear_window(fdf->mlx, fdf->win);
 		make_grid(fdf);
-		rotate(fdf);
+	//	heigth_set(fdf);
+	//	rotate_y(fdf);
+		rotate_z(fdf);
+		heigth_set(fdf);
 		draw_grid(fdf);
 	}
 	if (keycode == 126)
 	{
-		fdf->grid_h++;
+	//	fdf->grid_h++;
+		fdf->angle = fdf->angle + 5;
 		mlx_clear_window(fdf->mlx, fdf->win);
 		make_grid(fdf);
-		rotate(fdf);
+		rotate_x(fdf);
+		rotate_y(fdf);
+		heigth_set(fdf);
 		draw_grid(fdf);
 	}
 	if (keycode == 125)
 	{
-		fdf->grid_h--;
+	//	fdf->grid_h--;
+		fdf->angle = fdf->angle - 5;
 		mlx_clear_window(fdf->mlx, fdf->win);
 		make_grid(fdf);
-		rotate(fdf);
+		rotate_x(fdf);
+		rotate_y(fdf);
+		heigth_set(fdf);
 		draw_grid(fdf);
 	}
 	if (keycode == 53)
@@ -69,6 +85,7 @@ void	make_grid(t_fdf *fdf)
 	i = 0;
 	while (y != fdf->grid_mh)
 	{
+	//	yy = (fdf->grid_w - fdf->grid_h) * 10 + (fdf->grid_h / 2) * y;
 		yy = (fdf->grid_h / 2) * y;
 		xx = fdf->win_w / 2 - (fdf->grid_w / 2 * y);
 		x = 0;
@@ -77,21 +94,34 @@ void	make_grid(t_fdf *fdf)
 			X(i) = xx + (x * (fdf->grid_w / 2));
 			yy += fdf->grid_h / 2;
 			Y(i) = yy;
-		//	Y(i) = Y(i) - Y(i) * 123123 % 100;
 			x++;
 			i++;
 		}
 		y++;
 	}
+
+//	i = 0;
+//	while (i != fdf->grid_mh * fdf->grid_mw)
+//	{
+//		mlx_pixel_put(fdf->mlx, fdf->win, fdf->dot[i].x + 300, fdf->dot[i].y + 300, 0xffff);
+//		printf("x: %d, y: %d\n", fdf->dot[i].x, fdf->dot[i].y);
+	//	printf("x: %d, y: %d\n", xxx[i], yyy[i]);
+//		i++;
+//	}
+
+}
+
+void	z_set(t_fdf *fdf)
+{
+	int		i;
+
 	i = 0;
 	while (i != fdf->grid_mh * fdf->grid_mw)
 	{
-//		mlx_pixel_put(fdf->mlx, fdf->win, fdf->dot[i].x + 300, fdf->dot[i].y + 300, 0xffff);
-		printf("x: %d, y: %d\n", fdf->dot[i].x, fdf->dot[i].y);
-	//	printf("x: %d, y: %d\n", xxx[i], yyy[i]);
+		if (i % 2 == 0)
+			Z(i) = 30;
 		i++;
 	}
-
 }
 
 void	heigth_set(t_fdf *fdf)
@@ -99,10 +129,9 @@ void	heigth_set(t_fdf *fdf)
 	int		i;
 
 	i = 0;
-	while (i != fdf->grid_mh * fdf->grid_mh)
+	while (i != fdf->grid_mh * fdf->grid_mw)
 	{
-		if (i % 2 == 0)
-			Y(i) = Y(i) - 50;
+		Y(i) = Y(i) - Z(i);
 		i++;
 	}
 }
@@ -117,6 +146,7 @@ void	draw_grid(t_fdf *fdf)
 		mlx_pixel_put(fdf->mlx, fdf->win, X(i), Y(i), 0xffff);
 		i++;
 	}
+	
 	i = 0;
 	while (i != fdf->grid_mh * fdf->grid_mw - fdf->grid_mw)
 	{
@@ -128,12 +158,65 @@ void	draw_grid(t_fdf *fdf)
 	i = 0;
 	while (i != fdf->grid_mh * fdf->grid_mw)
 	{
-		ft_draw_vector(fdf->dot[i], fdf->dot[i + fdf->grid_mw - 1], fdf->mlx, fdf->win);
-		i += fdf->grid_mw;
+	//	if (!(i % fdf->grid_mw))
+		ft_draw_vector(fdf->dot[i], fdf->dot[i + 1], fdf->mlx, fdf->win);
+		if ((++i + 1) % (fdf->grid_mh) == 0)
+			i++;
+	//	else
+	//		i++;
+	}
+	
+}
+
+
+void	rotate_x(t_fdf *fdf)
+{
+	int		i;
+	int		y;
+	int		z;
+	int		y1;
+	int		z1;
+
+	i = 0;
+	while (i != fdf->grid_mh * fdf->grid_mw)
+	{
+		y = Y(i) - 500;
+		z = Z(i);
+		y1 = y;
+		z1 = z;
+		y = y1 * cos(RAD(fdf->angle)) + z1 * sin(RAD(fdf->angle));
+		z = -y1 * sin(RAD(fdf->angle)) + z1 * cos(RAD(fdf->angle));
+		Y(i) = y + 500;
+		Z(i) = z;
+		i++;
 	}
 }
 
-void	rotate(t_fdf *fdf)
+void	rotate_y(t_fdf *fdf)
+{
+	int		i;
+	int		x;
+	int		z;
+	int		x1;
+	int		z1;
+
+	i = 0;
+	while (i != fdf->grid_mh * fdf->grid_mw)
+	{
+		x = X(i) - 500;
+		z = Z(i);
+		x1 = x;
+		z1 = z;
+		x = x1 * cos(RAD(fdf->angle)) + z1 * sin(RAD(fdf->angle));
+		z = -x1 * sin(RAD(fdf->angle)) + z1 * cos(RAD(fdf->angle));
+		X(i) = x + 500;
+		Z(i) = z;
+		i++;
+	}
+}
+
+
+void	rotate_z(t_fdf *fdf)
 {
 //	double	rot_len;
 	int		i;
@@ -188,13 +271,14 @@ int		main(void)
 
 	fdf->angle = 0;
 	fdf->grid_mh = 20;
-	fdf->grid_mw = 20;
+	fdf->grid_mw = 10;
 	fdf->dot = (t_dot *)malloc(sizeof(t_dot) * (fdf->grid_mh * fdf->grid_mw));
 	fdf->grid_h = 50;
 	fdf->grid_w = 50;
 
+	z_set(fdf);
 	make_grid(fdf);
-	rotate(fdf);
+	rotate_z(fdf);
 	heigth_set(fdf);
 	draw_grid(fdf);
 	fdf->output = mlx_xpm_file_to_image(fdf->mlx, "open.xpm", &fdf->dot[1].x, &fdf->dot[1].y);
