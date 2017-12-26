@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
+/*   Updated: 2017/12/26 14:59:21 by anestor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
@@ -40,8 +51,12 @@ typedef struct		s_fdf
 	int				grid_mh;
 	int				win_w;
 	int				win_h;
+	int				angle;
 }					t_fdf;
 
 void	ft_draw_vector(t_dot start, t_dot end, void *mlx_ptr, void *win_ptr);
+
+int		key_hook_exit(int keycode, t_fdf *fdf);
+
 
 #endif

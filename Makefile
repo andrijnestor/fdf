@@ -4,6 +4,7 @@ NAME    = fdf
 SRC        = 
 SRC += main.c
 SRC += vector.c
+SRC += hooks.c
 
 OBJ        = $(patsubst src/%.c,obj/%.o,$(SRC))
 .SILENT:

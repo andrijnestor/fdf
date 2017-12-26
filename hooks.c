@@ -1,14 +1,13 @@
 #include "fdf.h"
-/*
-int		key_hook_exit(int keycode, void *param)
+
+int		key_hook_exit(int keycode, t_fdf *fdf)
 {
-	(void)param;
-	printf("%d\n", keycode);
+	(void)fdf;
 	if (keycode == 53)
 		exit(0);
 	return (0);
 }
-*/
+
 /*
 int        hook_mousedown(int button, int x, int y, t_mlx *mlx)
 {
