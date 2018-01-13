@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/13 22:30:50 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/13 17:11:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define Y(i) fdf->dot[i].y
 # define X(i) fdf->dot[i].x
 # define Z(i) fdf->dot[i].z
-# define COLOR(i) fdf->dot[i].col
 # define RAD(x) (x * M_PI / 180.0)
 # define DEG(x) (x * 180.0 / M_PI)
 # define GREATER(x, y) (x > y) ? x : y
@@ -38,8 +37,7 @@ typedef struct		s_dot
 {
 	int				x;
 	int				y;
-	int				z; // ??
-	int				col;
+	int				z;
 //	struct s_dot	*next;
 }					t_dot;
 
@@ -48,29 +46,18 @@ typedef struct		s_fdf
 	t_dot			*dot;
 	void			*mlx;
 	void			*win;
-	void			*output; //??
+	void			*output;
 	int				grid_w;
 	int				grid_h;
-	int				grid_p_w;
-	int				grid_p_h;
+	int				grid_mw;
+	int				grid_mh;
 	int				win_w;
 	int				win_h;
-	int				angle; //??
+	int				angle;
 }					t_fdf;
 
-int		fdf_exit(char *text);
-
-/*
-** readings and init settings
-*/
-
-int		read_fdf(char *file, t_fdf *fdf);
-void	allocate_dots(char *file, t_fdf *fdf);
-void	read_lines(char *line, t_fdf *fdf, int *n);
-void	set_height_width(t_fdf *fdf);
-
-
 void	ft_draw_vector(t_dot start, t_dot end, void *mlx_ptr, void *win_ptr);
+
 int		key_hook_exit(int keycode, t_fdf *fdf);
 
 

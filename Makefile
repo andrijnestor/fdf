@@ -1,8 +1,9 @@
 
-NAME    = fdf
+NAME = fdf
 #no flags
-SRC        = 
+SRC = 
 SRC += main.c
+SRC += read.c
 SRC += vector.c
 SRC += hooks.c
 

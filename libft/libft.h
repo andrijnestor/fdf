@@ -6,7 +6,7 @@
 /*   By: anestor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 13:28:55 by anestor           #+#    #+#             */
-/*   Updated: 2017/12/18 15:31:19 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/13 19:27:00 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,9 @@ int					ft_sqrt(int nb);
 int					get_next_line(const int fd, char **line);
 void				ft_putnbr_base(long long int num, int base);
 int					ft_printf(const char *restrict format, ...);
+
+int					ft_count_words(char const *s, char c);
+int					ft_num_len(long long int num);
+
 
 #endif

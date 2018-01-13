@@ -6,7 +6,7 @@
 #    By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/31 13:41:32 by anestor           #+#    #+#              #
-#    Updated: 2017/12/26 13:19:05 by anestor          ###   ########.fr        #
+#    Updated: 2018/01/13 19:26:37 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,8 @@ SRC += ft_printf_chars.c
 SRC += ft_printf_nums.c
 SRC += ft_printf_make_params.c
 SRC += ft_printf_kostyl.c
+SRC += ft_count_words.c
+SRC += ft_num_len.c
 
 O = $(addprefix $(ODIR), $(OBJ))
 
