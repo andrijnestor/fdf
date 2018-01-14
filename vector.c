@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:57 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/13 22:30:52 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/14 21:12:52 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_draw_vector(t_dot start, t_dot end, void *mlx_ptr, void *win_ptr)
 	vect_l = sqrt(pow(ABS((end.x - start.x)), 2) + pow(ABS((end.y - start.y)), 2));
 	x_turn = (ABS((end.x - start.x))) / vect_l;
 	y_turn = (ABS((end.y - start.y))) / vect_l;
-	color = start.col; //bred
+	color = end.col; //bred
 //	printf("abs_x: %d\n", ABS((end.x - start.x)));
 //	printf("abs_y: %d\n", ABS((end.y - start.y)));
 //	printf("vector_len: %f\n", vect_l);
