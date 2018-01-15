@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:22:11 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 18:36:48 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 20:39:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int		main(int argc, char **argv)
 		first_scale(fdf);
 		render(fdf);
 		mlx_hook(fdf->win, 2, 5, key_hooks, fdf);
+		mlx_hook(fdf->win, 4, 0, hook_mouse_down, fdf);
+		mlx_hook(fdf->win, 5, 0, hook_mouse_up, fdf);
+		mlx_hook(fdf->win, 6, 0, hook_mouse_move, fdf);
 		mlx_loop(fdf->mlx);
 	}
 	return (0);

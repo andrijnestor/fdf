@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 16:45:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 18:27:29 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 20:45:49 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	scale_and_position(t_fdf *fdf)
 
 	i = 0;
 	step = WIN_H / (GREATER(fdf->grid_p_h, fdf->grid_p_w));
-   	step = fdf->scale * step;
+	step = fdf->scale * step;
 	x_offset = WIN_W / 2 - fdf->grid_p_w * step / 2 + step / 2;
-	y_offset = WIN_H / 2 - fdf->grid_p_h * step / 2 + step / 2;;
+	y_offset = WIN_H / 2 - fdf->grid_p_h * step / 2 + step / 2;
 	while (i != fdf->grid_p_h * fdf->grid_p_w)
 	{
 		PX(i) = step * X(i) + x_offset;

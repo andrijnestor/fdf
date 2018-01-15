@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/15 20:49:06 by anestor           #+#    #+#              #
+#    Updated: 2018/01/15 20:52:14 by anestor          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = fdf
-#no flags
+FLAGS = -Wall -Wextra -Werror
+
 SRC = 
 SRC += main.c
 SRC += read.c
@@ -16,12 +28,12 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	gcc  -L libft/ -lft -g -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) -g
+	gcc $(FLAGS) -L libft/ -lft -g -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) -g
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF"
 
 obj/%.o: src/%.c
 	mkdir -p obj
-	gcc -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
 	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"
 
 clean:

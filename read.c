@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:22:52 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 18:25:48 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 20:45:07 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int		read_fdf(char *file, t_fdf *fdf)
 		fdf_exit("No such file or directory\n");
 	n = 0;
 	while (get_next_line(fd, &line) > 0)
-	{
 		read_lines(line, fdf, &n);
-	}
 	close(fd);
 	fdf->win_h = WIN_H;
 	fdf->win_w = WIN_W;

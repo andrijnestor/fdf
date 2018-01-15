@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 18:36:50 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 20:47:09 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "minilibx_macos/mlx.h" //
-# include "libft/libft.h" //
+# include "minilibx_macos/mlx.h"
+# include "libft/libft.h"
 # define ABS(x) (x < 0) ? x * -1 : x
 # define DRAW_UNTIL(x, s, e) (s < e) ? x <= e : e <= x
 # define ITERATE(x, y, s, e) (s < e) ? x + y : x - y
@@ -40,7 +40,6 @@
 # define DEG(x) (x * 180.0 / M_PI)
 # define GREATER(x, y) (x > y) ? x : y
 # define LOWER(x, y) (x < y) ? x : y
-# include <stdio.h> //
 
 typedef struct		s_dot
 {
@@ -50,15 +49,21 @@ typedef struct		s_dot
 	int				col;
 }					t_dot;
 
+typedef struct		s_mouse
+{
+	int				x;
+	int				y;
+	int				last_x;
+	int				last_y;
+	char			is_down;
+}					t_mouse;
+
 typedef struct		s_fdf
 {
 	t_dot			*dot;
 	t_dot			*p_dot;
 	void			*mlx;
 	void			*win;
-//	void			*output; //??
-//	int				grid_w; //??
-//	int				grid_h; //??
 	int				grid_p_w;
 	int				grid_p_h;
 	int				win_w;
@@ -68,6 +73,7 @@ typedef struct		s_fdf
 	int				z_angle;
 	double			scale;
 	double			z_scale;
+	t_mouse			mouse;
 }					t_fdf;
 
 /*
@@ -117,5 +123,8 @@ int					color(int c1, int c2, double perc);
 */
 
 int					key_hooks(int keycode, t_fdf *fdf);
+int					hook_mouse_down(int button, int x, int y, t_fdf *fdf);
+int					hook_mouse_up(int button, int x, int y, t_fdf *fdf);
+int					hook_mouse_move(int x, int y, t_fdf *fdf);
 
 #endif
