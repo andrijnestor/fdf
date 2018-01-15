@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:22:52 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 20:45:07 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 22:00:08 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		read_fdf(char *file, t_fdf *fdf)
 	fdf->x_angle = -45;
 	fdf->y_angle = 45;
 	fdf->z_angle = -30;
+	if (fdf->col_param.is_set == 1)
+		change_colors(fdf);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 20:49:06 by anestor           #+#    #+#              #
-#    Updated: 2018/01/15 21:14:27 by anestor          ###   ########.fr        #
+#    Updated: 2018/01/15 22:09:32 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC += vector.c
 SRC += hooks.c
 SRC += render.c
 SRC += grid.c
+SRC += bonuscolors.c
 
 OBJ        = $(patsubst src/%.c,obj/%.o,$(SRC))
 .SILENT:

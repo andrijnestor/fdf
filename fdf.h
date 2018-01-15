@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 21:15:22 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 22:06:11 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ typedef struct		s_mouse
 	char			is_down;
 }					t_mouse;
 
+typedef struct		s_parmcol
+{
+	int				is_set;
+	int				col1;
+	int				col2;
+}					t_parmcol;
+
 typedef struct		s_fdf
 {
 	t_dot			*dot;
@@ -74,6 +81,7 @@ typedef struct		s_fdf
 	double			scale;
 	double			z_scale;
 	t_mouse			mouse;
+	t_parmcol		col_param;
 }					t_fdf;
 
 /*
@@ -126,5 +134,12 @@ int					key_hooks(int keycode, t_fdf *fdf);
 int					hook_mouse_down(int button, int x, int y, t_fdf *fdf);
 int					hook_mouse_up(int button, int x, int y, t_fdf *fdf);
 int					hook_mouse_move(int x, int y, t_fdf *fdf);
+
+/*
+** bonus colors
+*/
+
+void				color_gamma(int c1, int c2, t_fdf *fdf);
+void				change_colors(t_fdf *fdf);
 
 #endif
