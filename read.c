@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:22:52 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/14 20:45:11 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 16:44:42 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int		read_fdf(char *file, t_fdf *fdf)
 		read_lines(line, fdf, &n);
 	}
 	close(fd);
+	fdf->win_h = WIN_H;
+	fdf->win_w = WIN_W;
+	fdf->scale = 1;
+	fdf->x_angle = -60;
+	fdf->y_angle = 45;
+	fdf->z_angle = 0;
 	return (0);
 }
 
@@ -50,9 +56,9 @@ void	allocate_dots(char *file, t_fdf *fdf)
 	if ((fdf->p_dot = (t_dot *)ft_memalloc(sizeof(t_dot) *
 			(fdf->grid_p_h * fdf->grid_p_w))) == NULL)
 		fdf_exit("Out of memory\n");
-	set_height_width(fdf);
+//	set_height_width(fdf);
 	printf("p_h: %d, p_w: %d\n", fdf->grid_p_h, fdf->grid_p_w); //debugging
-	printf("h: %d, w: %d\n", fdf->grid_h, fdf->grid_w); //debugging
+//	printf("h: %d, w: %d\n", fdf->grid_h, fdf->grid_w); //debugging
 }
 
 void	read_lines(char *line, t_fdf *fdf, int *n)
@@ -85,6 +91,6 @@ void	set_height_width(t_fdf *fdf)
 {
 	fdf->win_h = WIN_H;
 	fdf->win_w = WIN_W;
-	fdf->grid_h = fdf->win_h / (GREATER(fdf->grid_p_w, fdf->grid_p_h));
-	fdf->grid_w = fdf->grid_h;
+//	fdf->grid_h = fdf->win_h / (GREATER(fdf->grid_p_w, fdf->grid_p_h));
+//	fdf->grid_w = fdf->grid_h;
 }

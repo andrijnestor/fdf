@@ -6,7 +6,8 @@ SRC += main.c
 SRC += read.c
 SRC += vector.c
 SRC += hooks.c
-SRC += rotation.c
+SRC += render.c
+SRC += grid.c
 
 OBJ        = $(patsubst src/%.c,obj/%.o,$(SRC))
 .SILENT:

@@ -5,34 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/26 13:22:11 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 17:06:20 by anestor          ###   ########.fr       */
+/*   Created: 2018/01/15 17:18:36 by anestor           #+#    #+#             */
+/*   Updated: 2018/01/15 17:28:11 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stdio.h>
 
-int		main(int argc, char **argv)
+int		ft_lerpi(int first, int second, double p)
 {
-	t_fdf	*fdf;
-
-	if (argc == 2)
-	{
-		if ((fdf = ft_memalloc(sizeof(t_fdf))) == NULL)
-			fdf_exit("Out of memory\n");
-		read_fdf(argv[1], fdf);
-		fdf->mlx = mlx_init();
-		fdf->win = mlx_new_window(fdf->mlx, fdf->win_w, fdf->win_h, "fdf");
-		make_grid(fdf);
-		render(fdf);
-		mlx_hook(fdf->win, 2, 5, key_hooks, fdf);
-		mlx_loop(fdf->mlx);
-	}
-	return (0);
+	if (first == second)
+		return (first);
+	return ((int)((double)first + (second - first) * p));
 }
 
-int		fdf_exit(char *text)
+int			clerp(int c1, int c2, double p)
 {
-	write(1, text, ft_strlen(text));
-	exit(1);
+	int r;
+	int g;
+	int b;
+
+	if (c1 == c2)
+		return (c1);
+	r = ft_lerpi((c1 >> 16) & 0xFF, (c2 >> 16) & 0xFF, p);
+	g = ft_lerpi((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, p);
+	b = ft_lerpi(c1 & 0xFF, c2 & 0xFF, p);
+	return (r << 16 | g << 8 | b);
+}
+
+int		main(void)
+{
+	printf("color: %x\n", clerp(0xffffff, 0xff0000, 1));
+	return (0);
 }
