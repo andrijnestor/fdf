@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 20:47:09 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 21:15:22 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "minilibx_macos/mlx.h"
+# include <mlx.h>
 # include "libft/libft.h"
 # define ABS(x) (x < 0) ? x * -1 : x
 # define DRAW_UNTIL(x, s, e) (s < e) ? x <= e : e <= x

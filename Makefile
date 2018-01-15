@@ -6,7 +6,7 @@
 #    By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 20:49:06 by anestor           #+#    #+#              #
-#    Updated: 2018/01/15 20:52:14 by anestor          ###   ########.fr        #
+#    Updated: 2018/01/15 21:14:27 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	gcc $(FLAGS) -L libft/ -lft -g -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) -g
+	gcc $(FLAGS) -L libft/ -lft -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF"
 
 obj/%.o: src/%.c
