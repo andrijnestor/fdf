@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 16:50:13 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 17:30:56 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:36:51 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ int		key_hooks(int keycode, t_fdf *fdf)
 	if (keycode == 69)
 		fdf->scale += SCALE_STEP;
 	if (keycode == 78)
-		fdf->scale -= SCALE_STEP;
+		fdf->scale -= SCALE_STEP;		
+	if (keycode == 19)
+		fdf->z_scale += SCALE_STEP;
+	if (keycode == 18)
+		fdf->z_scale -= SCALE_STEP;
 	if (keycode == 53)
 		exit(0);
 	mlx_clear_window(fdf->mlx, fdf->win);

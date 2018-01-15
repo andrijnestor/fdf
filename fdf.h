@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 13:21:46 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 17:37:00 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:36:50 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_fdf
 	int				y_angle;
 	int				z_angle;
 	double			scale;
+	double			z_scale;
 }					t_fdf;
 
 /*
@@ -82,7 +83,8 @@ int					fdf_exit(char *text);
 int					read_fdf(char *file, t_fdf *fdf);
 void				allocate_dots(char *file, t_fdf *fdf);
 void				read_lines(char *line, t_fdf *fdf, int *n);
-void				set_height_width(t_fdf *fdf);
+void				first_scale(t_fdf *fdf);
+void				pre_render(t_fdf *fdf);
 
 /*
 ** grids

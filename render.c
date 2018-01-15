@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 16:45:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 16:46:28 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:27:29 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	scale_and_position(t_fdf *fdf)
 	{
 		PX(i) = step * X(i) + x_offset;
 		PY(i) = step * Y(i) + y_offset;
-		PZ(i) = step * Z(i);
+		PZ(i) = step * Z(i) * fdf->z_scale;
 		i++;
 	}
 }

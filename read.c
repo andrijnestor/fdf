@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 17:22:52 by anestor           #+#    #+#             */
-/*   Updated: 2018/01/15 16:44:42 by anestor          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:25:48 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int		read_fdf(char *file, t_fdf *fdf)
 	fdf->win_h = WIN_H;
 	fdf->win_w = WIN_W;
 	fdf->scale = 1;
-	fdf->x_angle = -60;
+	fdf->z_scale = 1;
+	fdf->x_angle = -45;
 	fdf->y_angle = 45;
-	fdf->z_angle = 0;
+	fdf->z_angle = -30;
 	return (0);
 }
 
@@ -56,9 +57,6 @@ void	allocate_dots(char *file, t_fdf *fdf)
 	if ((fdf->p_dot = (t_dot *)ft_memalloc(sizeof(t_dot) *
 			(fdf->grid_p_h * fdf->grid_p_w))) == NULL)
 		fdf_exit("Out of memory\n");
-//	set_height_width(fdf);
-	printf("p_h: %d, p_w: %d\n", fdf->grid_p_h, fdf->grid_p_w); //debugging
-//	printf("h: %d, w: %d\n", fdf->grid_h, fdf->grid_w); //debugging
 }
 
 void	read_lines(char *line, t_fdf *fdf, int *n)
@@ -84,13 +82,38 @@ void	read_lines(char *line, t_fdf *fdf, int *n)
 			COLOR(*n) = 0xffffff;
 		*n = *n + 1;
 	}
-//	printf("n test: %d\n", *n);
 }
 
-void	set_height_width(t_fdf *fdf)
+void	first_scale(t_fdf *fdf)
 {
-	fdf->win_h = WIN_H;
-	fdf->win_w = WIN_W;
-//	fdf->grid_h = fdf->win_h / (GREATER(fdf->grid_p_w, fdf->grid_p_h));
-//	fdf->grid_w = fdf->grid_h;
+	int		x;
+	int		y;
+	int		i;
+
+	y = 0;
+	i = 0;
+	pre_render(fdf);
+	while (y != fdf->grid_p_h)
+	{
+		x = 0;
+		while (x != fdf->grid_p_w)
+		{
+			if (PX(i) < 0 || PY(i) < 0)
+			{
+				fdf->scale -= 0.1;
+				pre_render(fdf);
+			}
+			x++;
+			i++;
+		}
+		y++;
+	}
+}
+
+void	pre_render(t_fdf *fdf)
+{
+	scale_and_position(fdf);
+	rotate_x(fdf);
+	rotate_y(fdf);
+	rotate_z(fdf);
 }
