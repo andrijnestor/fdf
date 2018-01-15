@@ -6,7 +6,7 @@
 #    By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 20:49:06 by anestor           #+#    #+#              #
-#    Updated: 2018/01/15 22:09:32 by anestor          ###   ########.fr        #
+#    Updated: 2018/01/15 22:30:14 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,36 +22,31 @@ SRC += render.c
 SRC += grid.c
 SRC += bonuscolors.c
 
-OBJ        = $(patsubst src/%.c,obj/%.o,$(SRC))
+OBJ        = $(patsubst %.c,obj/%.o,$(SRC))
 .SILENT:
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C libft/
-	gcc $(FLAGS) -L libft/ -lft -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
-	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF"
+	@make -C libft/
+	@gcc $(FLAGS) -L libft/ -lft -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit obj/*.o -o $(NAME)
 
-obj/%.o: src/%.c
-	mkdir -p obj
-	gcc $(FLAGS) -c $< -o $@
-	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"
+obj/%.o: %.c
+	@mkdir -p obj
+	@gcc $(FLAGS) -c $< -o $@
+	@echo "... compiling $< ..."
 
 clean:
-	/bin/rm -rf obj/
-	make -C libft/ clean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean Libprintf"
+	@/bin/rm -rf obj/
+	@make -C libft/ clean
+	@echo "... cleaning fdf obj ..."
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	make -C libft/ fclean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean Libprintf"
+	@/bin/rm -f $(NAME)
+	@make -C libft/ fclean
+	@echo "... cleaning $(NAME) ..."
 
 re: fclean all
-
-test: re
-	printf '\033[32m%s\n\033[0m' "-------------------------------------"
-	./fdf
 
 all: $(NAME)
 .PHONY: clean fclean re all test
